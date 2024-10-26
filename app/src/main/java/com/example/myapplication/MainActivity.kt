@@ -1,16 +1,35 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import com.example.myapplication.databinding.ActivityMainBinding
+
+
+
 
 class MainActivity : AppCompatActivity() {
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        initMenuButtons()
+    }
+     private fun initMenuButtons() {
+        findViewById<Button>(R.id.button_menu).setOnClickListener {
+            Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
+        }
+        findViewById<Button>(R.id.button_fav).setOnClickListener {
+            Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+        }
+        findViewById<Button>(R.id.button_watch_later).setOnClickListener {
+            Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
+        }
+        findViewById<Button>(R.id.button_selections).setOnClickListener {
+            Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
+        }
+        findViewById<Button>(R.id.button_settings).setOnClickListener {
+            Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
+
