@@ -1,3 +1,5 @@
+
+
 package com.example.myapplication
 
 import android.os.Bundle
@@ -5,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         initNavigation()
 
+        //Зупускаем фрагмент при старте
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_placeholder, HomeFragment())
@@ -23,12 +25,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun launchDetailsFragment(film: Film) {
-
+        //Создаем "посылку"
         val bundle = Bundle()
+        //Кладем наш фильм в "посылку"
         bundle.putParcelable("film", film)
+        //Кладем фрагмент с деталями в перменную
         val fragment = DetailsFragment()
+        //Прикрепляем нашу "посылку" к фрагменту
         fragment.arguments = bundle
 
+        //Запускаем фрагмент
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_placeholder, fragment)
@@ -36,17 +42,22 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    @Suppress("DEPRECATION")
     private fun initNavigation() {
 
-        findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener {
+        bottom_navigation.setOnNavigationItemSelectedListener {
 
             when (it.itemId) {
                 R.id.favorites -> {
-                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
                 R.id.watch_later -> {
-                    Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Посмотреть похже", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.selections -> {
@@ -58,7 +69,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
 
 
 
