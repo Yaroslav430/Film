@@ -1,13 +1,12 @@
 
 
 
-
-
-
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("kotlin-android-extensions")
+
+
 
 
 
@@ -18,6 +17,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
+
         applicationId = "com.example.myapplication"
         minSdk = 30
         targetSdk = 34
@@ -50,15 +50,18 @@ android {
 }
 
 dependencies {
-
-    implementation("com.google.android.material:material:1.12.0-alpha07")
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation (libs.androidx.core.ktx.v1150)
+    implementation (libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }
