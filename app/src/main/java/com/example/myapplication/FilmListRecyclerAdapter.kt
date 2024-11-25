@@ -1,13 +1,11 @@
 package com.example.myapplication
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.film_item.view.*
 
 class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     private val items = mutableListOf<Film>()
 
     override fun getItemCount() = items.size
@@ -29,9 +27,8 @@ class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : 
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addItems(list: List<Film>) {
 
+    fun addItems(list: List<Film>) {
         items.clear()
         items.addAll(list)
         notifyDataSetChanged()
