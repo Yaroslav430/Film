@@ -37,6 +37,7 @@ class DetailsFragment : Fragment() {
 
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
+
             intent.putExtra(
                 Intent.EXTRA_TEXT,
                 "Check out this film: ${film.title} \n\n ${film.description}"
@@ -47,9 +48,7 @@ class DetailsFragment : Fragment() {
     }
 
     private fun setFilmsDetails() {
-
         film = arguments?.get("film") as Film
-
 
         details_toolbar.title = film.title
         details_poster.setImageResource(film.poster)
