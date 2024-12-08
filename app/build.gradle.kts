@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id ("kotlin-android-extensions")
+    id ("kotlin-kapt")
 
 
 
@@ -51,6 +52,8 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    kapt(libs.compiler)
+    implementation (libs.glide)
     implementation (libs.androidx.core.ktx.v1150)
     implementation (libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core.ktx)
@@ -64,4 +67,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
+
 }
+
+
+
+
