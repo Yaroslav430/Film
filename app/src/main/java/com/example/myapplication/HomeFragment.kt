@@ -9,7 +9,6 @@ import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.Locale
-
 class HomeFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val filmsDataBase = listOf(
@@ -46,7 +45,6 @@ class HomeFragment : Fragment() {
                 return true
             }
             override fun onQueryTextChange(newText: String): Boolean {
-
                 if (newText.isEmpty()) {
                     filmsAdapter.addItems(filmsDataBase)
                     return true
@@ -59,7 +57,9 @@ class HomeFragment : Fragment() {
             }
         })
 
+
         initRecycler()
+
         filmsAdapter.addItems(filmsDataBase)
     }
 
@@ -71,6 +71,7 @@ class HomeFragment : Fragment() {
                         (requireActivity() as MainActivity).launchDetailsFragment(film)
                     }
                 })
+
             adapter = filmsAdapter
             layoutManager = LinearLayoutManager(requireContext())
             val decorator = TopSpacingItemDecoration(8)
@@ -79,3 +80,4 @@ class HomeFragment : Fragment() {
     }
 
 }
+

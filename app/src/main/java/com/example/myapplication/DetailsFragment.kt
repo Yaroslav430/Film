@@ -46,6 +46,7 @@ class DetailsFragment : Fragment() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun setFilmsDetails() {
 
         film = arguments?.get("film") as Film
