@@ -11,6 +11,8 @@ class FilmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(film: Film) {
 
+
+
         title.text = film.title
         poster.setImageResource(film.poster)
         description.text = film.description

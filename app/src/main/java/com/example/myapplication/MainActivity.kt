@@ -21,6 +21,28 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
 
+
+    }
+
+    fun launchDetailsFragment(film: Film) {
+
+        val bundle = Bundle()
+        bundle.putParcelable("film", film)
+
+        val fragment = DetailsFragment()
+        fragment.arguments = bundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_placeholder, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun initNavigation() {
+
+
     }
 
     fun launchDetailsFragment(film: Film) {
@@ -39,16 +61,21 @@ class MainActivity : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     private fun initNavigation() {
+
         bottom_navigation.setOnNavigationItemSelectedListener {
 
             when (it.itemId) {
                 R.id.favorites -> {
-                    Toast.makeText(this, "Избранное", Toast.LENGTH_SHORT).show()
+                    supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_placeholder, FavoritesFragment())
+                        .addToBackStack(null)
+                        .commit()
                     true
                 }
 
                 R.id.watch_later -> {
-                    Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Посмотреть похже", Toast.LENGTH_SHORT).show()
                     true
                 }
 
@@ -61,7 +88,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
 
 
 
