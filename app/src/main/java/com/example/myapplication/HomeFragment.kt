@@ -5,10 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.Locale
+
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_home.*
+
 class HomeFragment : Fragment() {
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private val filmsDataBase = listOf(
@@ -33,6 +38,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         search_view.setOnClickListener {
             search_view.isIconified = false
@@ -77,6 +83,24 @@ class HomeFragment : Fragment() {
             val decorator = TopSpacingItemDecoration(8)
             addItemDecoration(decorator)
         }
+    }
+
+}
+
+        main_recycler.apply {
+            filmsAdapter = FilmListRecyclerAdapter(object : FilmListRecyclerAdapter.OnItemClickListener{
+                override fun click(film: Film) {
+                    (requireActivity() as MainActivity).launchDetailsFragment(film)
+                }
+            })
+
+            adapter = filmsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+
+            val decorator = TopSpacingItemDecoration(8)
+            addItemDecoration(decorator)
+        }
+        filmsAdapter.addItems(filmsDataBase)
     }
 
 }

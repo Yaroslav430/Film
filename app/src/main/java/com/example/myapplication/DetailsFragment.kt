@@ -1,6 +1,8 @@
 package com.example.myapplication
 
+
 import android.content.Intent
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +10,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_details.*
 
+
 class DetailsFragment : Fragment() {
     private lateinit var film: Film
+
+@Suppress("DEPRECATION")
+class DetailsFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +29,7 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setFilmsDetails()
+
 
         details_fab_favorites.setOnClickListener {
             if (!film.isInFavorites) {
@@ -51,14 +59,23 @@ class DetailsFragment : Fragment() {
 
         film = arguments?.get("film") as Film
 
+    }
+
+    private fun setFilmsDetails() {
+
+        val film = arguments?.get("film") as Film
+
+
 
         details_toolbar.title = film.title
         details_poster.setImageResource(film.poster)
         details_description.text = film.description
 
+
         details_fab_favorites.setImageResource(
             if (film.isInFavorites) R.drawable.ic_baseline_favorite_24
             else R.drawable.ic_baseline_favorite_border_24
         )
+
     }
 }
